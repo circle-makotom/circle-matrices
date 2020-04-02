@@ -12,7 +12,9 @@ jobs:
         description: The number to be multiplied
         type: integer
     steps:
-      - run: expr << parameters.a >> \* << parameters.b >>
+      - run:
+          name: << parameters.a >> x << parameters.b >>
+          command: expr << parameters.a >> \* << parameters.b >>
 
 workflows:
   version: 2
