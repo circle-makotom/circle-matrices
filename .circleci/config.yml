@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  multiply:
+    docker:
+      - image: archlinux/base:latest
+    parameters:
+      a:
+        description: The number to multiply
+        type: integer
+      b:
+        description: The number to be multiplied
+        type: integer
+    steps:
+      - run: expr << parameters.a >> \* << parameters.b >>
+
+workflows:
+  version: 2
+  multiplication-table:
+    jobs:
+      - multiply:
+          matrix:
+            parameters:
+              a: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+              b: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
